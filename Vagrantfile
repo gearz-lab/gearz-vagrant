@@ -24,6 +24,8 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 8080,  host: 8080
   config.vm.network :forwarded_port, guest: 28015, host: 28015
   config.vm.network :forwarded_port, guest: 29015, host: 29015
+  config.vm.network :forwarded_port, guest: 8081, host: 8081
+  config.vm.network :forwarded_port, guest: 3000, host: 3000
 
   # Provisioning
 
@@ -77,10 +79,20 @@ Vagrant.configure(2) do |config|
       sh.inline = <<-EOF
 
         git clone https://github.com/gearz-lab/gearz.git;
-        cd gearz;
+        cd /home/vagrant/gearz;
         npm install;
 
       EOF
     end
+
+  # Provisioning Gearz
+    config.vm.provision "run-gearz", type: "shell" do |sh|
+      sh.inline = <<-EOF
+
+        cd /home/vagrant/gearz;
+        npm run wpds&npm run start-dev;
+
+      EOF
+  end
 
 end

@@ -62,4 +62,15 @@ Vagrant.configure(2) do |config|
     EOF
   end
 
+  # Provisioning Gearz
+    config.vm.provision "install-gearz", type: "shell" do |sh|
+      sh.inline = <<-EOF
+
+        git clone https://github.com/gearz-lab/gearz.git;
+        cd gearz;
+        npm install;
+
+      EOF
+    end
+
 end

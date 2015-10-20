@@ -62,6 +62,16 @@ Vagrant.configure(2) do |config|
     EOF
   end
 
+  # Provisioning Node.js
+  config.vm.provision "install-node", type: "shell" do |sh|
+      sh.inline = <<-EOF
+
+        curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -;
+        sudo apt-get install --yes nodejs;
+
+      EOF
+    end
+
   # Provisioning Gearz
     config.vm.provision "install-gearz", type: "shell" do |sh|
       sh.inline = <<-EOF

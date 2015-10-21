@@ -70,6 +70,8 @@ Vagrant.configure(2) do |config|
 
         curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -;
         sudo apt-get install --yes nodejs;
+        sudo npm install -g webpack-dev-server;
+        sudo npm install -g babel;
 
       EOF
     end

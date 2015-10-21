@@ -102,7 +102,8 @@ Vagrant.configure(2) do |config|
       sh.inline = <<-EOF
 
         cd /home/vagrant/gearz;
-        npm run wpds&npm run start-dev;
+        git pull;
+        npm run wpds&npm run start;
 
       EOF
   end

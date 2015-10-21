@@ -76,6 +76,16 @@ Vagrant.configure(2) do |config|
       EOF
     end
 
+  # Provisioning NPM packages
+  config.vm.provision "install-npm-packages", type: "shell" do |sh|
+      sh.inline = <<-EOF
+
+        sudo npm install -g webpack-dev-server;
+        sudo npm install -g babel;
+
+      EOF
+    end
+
   # Provisioning Gearz
     config.vm.provision "install-gearz", type: "shell" do |sh|
       sh.inline = <<-EOF

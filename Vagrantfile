@@ -103,7 +103,7 @@ Vagrant.configure(2) do |config|
 
         cd /home/vagrant/gearz;
         git pull;
-        npm run wpds&npm run start;
+        npm run wpds;
 
       EOF
   end

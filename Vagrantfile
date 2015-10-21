@@ -29,7 +29,6 @@ Vagrant.configure(2) do |config|
 
   # Provisioning
 
-  # Provisioning RethinkDB
   config.vm.provision "install-rethinkdb", type: "shell" do |sh|
       sh.inline = <<-EOF
 
@@ -42,7 +41,6 @@ Vagrant.configure(2) do |config|
       EOF
   end
 
-  # Provisioning RethinkDB
   config.vm.provision "run-rethinkdb", type: "shell" do |sh|
       sh.inline = <<-EOF
 
@@ -54,7 +52,6 @@ Vagrant.configure(2) do |config|
       EOF
   end
 
-  # Provisioning Git
   config.vm.provision "install-git", type: "shell" do |sh|
     sh.inline = <<-EOF
 
@@ -64,7 +61,6 @@ Vagrant.configure(2) do |config|
     EOF
   end
 
-  # Provisioning Node.js
   config.vm.provision "install-node", type: "shell" do |sh|
       sh.inline = <<-EOF
 
@@ -76,7 +72,6 @@ Vagrant.configure(2) do |config|
       EOF
     end
 
-  # Provisioning NPM packages
   config.vm.provision "install-npm-packages", type: "shell" do |sh|
       sh.inline = <<-EOF
 
@@ -86,24 +81,22 @@ Vagrant.configure(2) do |config|
       EOF
     end
 
-  # Provisioning Gearz
     config.vm.provision "install-gearz", type: "shell" do |sh|
       sh.inline = <<-EOF
 
-        git clone https://github.com/gearz-lab/gearz.git;
+        sudo git clone https://github.com/gearz-lab/gearz.git;
         cd /home/vagrant/gearz;
-        npm install;
+        sudo npm install;
 
       EOF
     end
 
-  # Provisioning Gearz
     config.vm.provision "run-gearz", type: "shell" do |sh|
       sh.inline = <<-EOF
 
         cd /home/vagrant/gearz;
-        git pull;
-        npm run wpds;
+        sudo git pull;
+        sudo npm run wpds;
 
       EOF
   end
